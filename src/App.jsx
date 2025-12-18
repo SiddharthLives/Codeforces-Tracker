@@ -5,8 +5,7 @@ import UserHeader from "./components/UserHeader";
 import TagPieChart from "./components/TagPieChart";
 import RatingBarChart from "./components/RatingBarChart";
 import Heatmap from "./components/Heatmap";
-import ContestTabs from "./components/ContestTabs";
-import ContestProblems from "./components/ContestProblems";
+import ContestAnalytics from "./components/ContestAnalytics";
 import RatingAnalytics from "./components/RatingAnalytics";
 import {
   getUserInfo,
@@ -138,27 +137,7 @@ function App() {
 
             {/* Contest Analytics Page */}
             {activePage === "contest-analytics" && (
-              <div className="space-y-6">
-                {contests.length > 0 ? (
-                  <>
-                    <ContestTabs
-                      contests={contests}
-                      submissions={submissions}
-                      onSelectContest={setSelectedContests}
-                    />
-                    <ContestProblems
-                      contests={selectedContests}
-                      submissions={submissions}
-                    />
-                  </>
-                ) : (
-                  <div className="text-center py-12">
-                    <p className="text-gray-500 dark:text-gray-400">
-                      No contest data available
-                    </p>
-                  </div>
-                )}
-              </div>
+              <ContestAnalytics contests={contests} submissions={submissions} />
             )}
 
             {/* Stats Page */}

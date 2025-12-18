@@ -135,12 +135,17 @@ function ContestProblems({ contests, submissions }) {
                           href={`https://codeforces.com/contest/${contest.id}/problem/${idx}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`hover:underline font-medium ${getStatusColor(
+                          className={`block hover:underline font-medium ${getStatusColor(
                             problem.status
                           )}`}
                           title={`${problem.name} (${problem.rating})`}
                         >
-                          {idx}. {problem.name}
+                          <div>
+                            {idx}. {problem.name}
+                          </div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            ({problem.rating})
+                          </div>
                         </a>
                       ) : (
                         <span className="text-gray-400 dark:text-gray-600">
