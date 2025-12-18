@@ -4,18 +4,10 @@ function Navbar({
   darkMode,
   toggleDarkMode,
   onFindHandle,
-  activeSection,
-  setActiveSection,
+  activePage,
+  setActivePage,
 }) {
   const [showHandleModal, setShowHandleModal] = useState(false);
-
-  const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <>
@@ -32,9 +24,9 @@ function Navbar({
             {/* Navigation Links */}
             <div className="hidden md:flex items-center space-x-1">
               <button
-                onClick={() => scrollToSection("contest-analytics")}
+                onClick={() => setActivePage("contest-analytics")}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  activeSection === "contest-analytics"
+                  activePage === "contest-analytics"
                     ? "text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700"
                     : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
                 }`}
@@ -42,9 +34,9 @@ function Navbar({
                 Contest Analytics
               </button>
               <button
-                onClick={() => scrollToSection("stats")}
+                onClick={() => setActivePage("stats")}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  activeSection === "stats"
+                  activePage === "stats"
                     ? "text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700"
                     : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
                 }`}
@@ -120,9 +112,7 @@ function Navbar({
                 </svg>
               </button>
             </div>
-            <div>
-              {onFindHandle && onFindHandle(setShowHandleModal)}
-            </div>
+            <div>{onFindHandle && onFindHandle(setShowHandleModal)}</div>
           </div>
         </div>
       )}

@@ -38,7 +38,7 @@ function App() {
   const [contests, setContests] = useState([]);
   const [submissions, setSubmissions] = useState([]);
   const [selectedContests, setSelectedContests] = useState([]);
-  const [activeSection, setActiveSection] = useState("");
+  const [activePage, setActivePage] = useState("stats");
 
   useEffect(() => {
     if (darkMode) {
@@ -104,14 +104,14 @@ function App() {
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
-        activeSection={activeSection}
-        setActiveSection={setActiveSection}
+        activePage={activePage}
+        setActivePage={setActivePage}
         onFindHandle={(closeModal) => (
-          <HandleInput 
+          <HandleInput
             onSubmit={(handle) => {
               handleSubmit(handle);
               closeModal(false);
-            }} 
+            }}
           />
         )}
       />
@@ -136,39 +136,49 @@ function App() {
           <div className="space-y-8">
             <UserHeader userInfo={userInfo} />
 
-            {/* Contest Analytics Section */}
-            <div id="contest-analytics" className="scroll-mt-20">
-              {contests.length > 0 && (
-                <>
-                  <ContestTabs
-                    contests={contests}
-                    submissions={submissions}
-                    onSelectContest={setSelectedContests}
-                  />
-                  <ContestProblems
-                    contests={selectedContests}
-                    submissions={submissions}
-                  />
-                </>
-              )}
-            </div>
-
-            {/* Stats Section */}
-            <div id="stats" className="scroll-mt-20 space-y-8">
-              {ratingAnalytics && (
-                <RatingAnalytics
-                  ratingAnalytics={ratingAnalytics}
-                  div2TimeStats={div2TimeStats}
-                />
-              )}
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <TagPieChart tagStats={tagStats} />
-                <RatingBarChart ratingStats={ratingStats} />
+            {/* Contest Analytics Page */}
+            {activePage === "contest-analytics" && (
+              <div className="space-y-6">
+                {contests.length > 0 ? (
+                  <>
+                    <ContestTabs
+                      contests={contests}
+                      submissions={submissions}
+                      onSelectContest={setSelectedContests}
+                    />
+                    <ContestProblems
+                      contests={selectedContests}
+                      submissions={submissions}
+                    />
+                  </>
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-gray-500 dark:text-gray-400">
+                      No contest data available
+                    </p>
+                  </div>
+                )}
               </div>
+            )}
 
-              <Heatmap heatmapData={heatmapData} />
-            </div>
+            {/* Stats Page */}
+            {activePage === "stats" && (
+              <div className="space-y-8">
+                {ratingAnalytics && (
+                  <RatingAnalytics
+                    ratingAnalytics={ratingAnalytics}
+                    div2TimeStats={div2TimeStats}
+                  />
+                )}
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <TagPieChart tagStats={tagStats} />
+                  <RatingBarChart ratingStats={ratingStats} />
+                </div>
+
+                <Heatmap heatmapData={heatmapData} />
+              </div>
+            )}
           </div>
         )}
 
