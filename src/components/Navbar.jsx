@@ -120,8 +120,8 @@ function Navbar({
                 </svg>
               </button>
             </div>
-            <div onClick={() => setShowHandleModal(false)}>
-              {onFindHandle && onFindHandle()}
+            <div>
+              {onFindHandle && onFindHandle(setShowHandleModal)}
             </div>
           </div>
         </div>
