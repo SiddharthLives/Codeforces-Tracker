@@ -1,0 +1,181 @@
+
+CODEFORCES USER ANALYTICS DASHBOARD
+=================================
+
+PROJECT OBJECTIVE
+-----------------
+Build a responsive web application that takes a Codeforces handle as input and displays detailed competitive programming analytics using the official Codeforces API.
+
+TECH STACK (STRICT)
+-------------------
+Frontend  : React + Vite
+Styling   : Tailwind CSS
+Charts    : Chart.js
+Heatmap  : Custom SVG or calendar heatmap library
+API       : Codeforces Public API
+Language  : JavaScript (ES6+)
+
+CODEFORCES API ENDPOINTS TO USE
+------------------------------
+user.info
+user.rating
+user.status
+contest.list
+contest.standings
+
+
+FEATURES & IMPLEMENTATION DETAILS
+================================
+
+1) HANDLE INPUT + COLOR-CODED USERNAME
+-------------------------------------
+- Input field to enter Codeforces handle
+- Fetch data using user.info
+- Display username with color based on rating
+
+Rating to Color Mapping:
+Newbie (<1200)               -> Gray
+Pupil (1200–1399)            -> Green
+Specialist (1400–1599)       -> Cyan
+Expert (1600–1899)           -> Blue
+Candidate Master (1900–2099) -> Purple
+Master (2100–2299)           -> Orange
+International Master (2300–2399) -> Orange Red
+Grandmaster (>=2400)         -> Red
+
+
+2) PIE CHART – PROBLEM TAGS SOLVED
+---------------------------------
+Data Source:
+- user.status
+
+Logic:
+- Consider only verdict = "OK"
+- Count unique problems solved
+- Group problems by tags
+- Sort tags in descending order by count
+
+Visualization:
+- Pie chart using Chart.js
+- Different color for each tag
+- Tooltip shows:
+  Tag Name
+  Count
+  Percentage
+
+
+3) BAR GRAPH – PROBLEMS SOLVED BY RATING
+---------------------------------------
+Logic:
+- Use accepted submissions only
+- Group by problem.rating
+- Rating buckets: 800 to 3500 (step 100)
+- Count unique solved problems per rating
+
+Visualization:
+- X-axis: Rating
+- Y-axis: Number of problems solved
+- Vertical bar chart
+
+
+4) SUBMISSION HEATMAP (YEAR-WISE)
+--------------------------------
+Logic:
+- Use creationTimeSeconds from user.status
+- Count submissions per day
+- Display current year
+
+Visualization:
+- GitHub-style heatmap
+- Color intensity based on submissions
+- Tooltip: Date -> Submission count
+
+
+5) AVERAGE TIME TO SOLVE A & B IN DIV-2 CONTESTS
+-----------------------------------------------
+Scope:
+- Only Div.2 contests
+
+Logic:
+- Identify Div.2 contests from contest.list
+- For each contest:
+  - Find first accepted submission for Problem A and B
+  - Calculate time from contest start
+- Compute average time
+
+Output:
+Average time to solve:
+Problem A -> XX minutes
+Problem B -> YY minutes
+
+
+6) PEAK RATING, MAX RISE & MAX DOWNFALL
+--------------------------------------
+Data Source:
+- user.rating
+
+Calculations:
+- Peak Rating = max(newRating)
+- Max Rise = max(newRating - oldRating)
+- Max Downfall = min(newRating - oldRating)
+
+Display:
+Peak Rating: XXXX
+Max Rating Rise: +XXX
+Max Rating Drop: -XXX
+
+
+7) CONTEST TYPE FILTER HEADER
+-----------------------------
+Header Tabs:
+Div1 | Div2 | Div3 | Div1+Div2 | Global | Educational
+
+On Clicking a Tab:
+- Fetch contests using contest.list
+- Filter contests by type
+- Fetch problems via contest.standings
+
+Problem Status Color:
+Solved              -> Green
+Attempted (Wrong)   -> Red
+Not Attempted       -> Black
+
+UI:
+- Contest name
+- Problem list with clickable links
+- Color-coded problem status
+
+
+8) ERROR HANDLING & UX
+---------------------
+- Invalid handle error message
+- Loading spinners while fetching data
+- Cache API responses
+- Handle missing ratings or tags safely
+
+
+FILE STRUCTURE
+--------------
+src/
+ ├── components/
+ │   ├── HandleInput.jsx
+ │   ├── UserHeader.jsx
+ │   ├── TagPieChart.jsx
+ │   ├── RatingBarChart.jsx
+ │   ├── Heatmap.jsx
+ │   ├── ContestTabs.jsx
+ │   └── ContestProblems.jsx
+ ├── utils/
+ │   ├── api.js
+ │   ├── analytics.js
+ │   └── helpers.js
+ ├── App.jsx
+ └── main.jsx
+
+
+DEVELOPMENT NOTES
+-----------------
+- Clean UI
+- Well-commented code
+- Modular reusable components
+- Incremental development starting from handle input
