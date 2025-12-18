@@ -4,7 +4,7 @@ function ContestProblems({ contests, submissions }) {
   const contestData = useMemo(() => {
     if (!contests || !submissions) return [];
 
-    return contests.slice(0, 20).map((contest) => {
+    return contests.slice(0, 50).map((contest) => {
       const contestSubs = submissions.filter((s) => s.contestId === contest.id);
 
       // Get unique problems from this contest
