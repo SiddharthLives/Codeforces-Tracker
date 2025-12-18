@@ -40,12 +40,12 @@ function ProblemCell({ problem, contestId, submissionsMap }) {
         href={`https://codeforces.com/contest/${contestId}/problem/${index}`}
         target="_blank"
         rel="noopener noreferrer"
-        className={`inline-block px-2 py-1 rounded ${borderClass} hover:opacity-80 transition-opacity`}
+        className={`inline-flex flex-col items-center justify-center px-3 py-2 rounded w-[140px] min-h-[72px] ${borderClass} hover:opacity-80 transition-opacity`}
         title={`${name} (${rating || "N/A"})`}
       >
-        <div className={`text-xs font-medium ${colorClass}`}>
+        <div className={`text-xs font-medium ${colorClass} w-full`}>
           <div className="font-semibold">{index}</div>
-          <div className="truncate max-w-[120px] mt-0.5">
+          <div className="truncate max-w-full mt-0.5">
             {truncateName(name)}
           </div>
           <div className="text-[10px] opacity-80">({rating || "N/A"})</div>
