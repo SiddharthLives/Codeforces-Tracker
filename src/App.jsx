@@ -39,6 +39,7 @@ function App() {
   const [selectedContests, setSelectedContests] = useState([]);
 
   useEffect(() => {
+    console.log("Dark mode changed to:", darkMode);
     if (darkMode) {
       document.documentElement.classList.add("dark");
     } else {
@@ -48,7 +49,8 @@ function App() {
   }, [darkMode]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    console.log("Toggle clicked, current darkMode:", darkMode);
+    setDarkMode((prev) => !prev);
   };
 
   const handleSubmit = async (handle) => {
