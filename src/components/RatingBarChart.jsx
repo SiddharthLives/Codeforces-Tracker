@@ -21,9 +21,11 @@ ChartJS.register(
 function RatingBarChart({ ratingStats }) {
   if (!ratingStats || ratingStats.data.length === 0) {
     return (
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Problems by Rating</h2>
-        <p className="text-gray-500">No data available</p>
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
+        <h2 className="text-xl font-semibold mb-4 dark:text-gray-100">
+          Problems by Rating
+        </h2>
+        <p className="text-gray-500 dark:text-gray-400">No data available</p>
       </div>
     );
   }
@@ -83,8 +85,10 @@ function RatingBarChart({ ratingStats }) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">Problems Solved by Rating</h2>
+    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
+      <h2 className="text-xl font-semibold mb-4 dark:text-gray-100">
+        Problems Solved by Rating
+      </h2>
       <div style={{ height: "400px" }}>
         <Bar data={data} options={options} />
       </div>

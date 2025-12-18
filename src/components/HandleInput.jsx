@@ -22,7 +22,7 @@ function HandleInput({ onSubmit }) {
         <div>
           <label
             htmlFor="handle"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Codeforces Handle
           </label>
@@ -32,10 +32,12 @@ function HandleInput({ onSubmit }) {
             value={handle}
             onChange={(e) => setHandle(e.target.value)}
             placeholder="Enter username"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
           />
         </div>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && (
+          <p className="text-red-500 dark:text-red-400 text-sm">{error}</p>
+        )}
         <button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"

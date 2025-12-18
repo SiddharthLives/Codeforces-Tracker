@@ -52,8 +52,8 @@ function Heatmap({ heatmapData }) {
   }, [grid]);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-xl font-semibold mb-4">
+    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
+      <h2 className="text-xl font-semibold mb-4 dark:text-gray-100">
         Submission Activity ({currentYear})
       </h2>
       <div className="overflow-x-auto">
@@ -78,7 +78,7 @@ function Heatmap({ heatmapData }) {
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-2 mt-4 text-sm text-gray-600">
+        <div className="flex items-center gap-2 mt-4 text-sm text-gray-600 dark:text-gray-400">
           <span>Less</span>
           <div className="flex gap-1">
             <div

@@ -60,19 +60,23 @@ function ContestProblems({ contests, submissions }) {
 
   if (contestData.length === 0) {
     return (
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <p className="text-gray-500">No contests found for this category</p>
+      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
+        <p className="text-gray-500 dark:text-gray-400">
+          No contests found for this category
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h3 className="text-lg font-semibold mb-4">Recent Contests</h3>
+    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
+      <h3 className="text-lg font-semibold mb-4 dark:text-gray-100">
+        Recent Contests
+      </h3>
       <div className="space-y-4 max-h-96 overflow-y-auto">
         {contestData.map((contest) => (
-          <div key={contest.id} className="border-b pb-3">
-            <div className="text-sm font-medium text-gray-700 mb-2">
+          <div key={contest.id} className="border-b dark:border-gray-700 pb-3">
+            <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               {contest.name}
             </div>
             <div className="flex flex-wrap gap-2">
@@ -88,7 +92,9 @@ function ContestProblems({ contests, submissions }) {
                   </span>
                 ))
               ) : (
-                <span className="text-sm text-gray-500">No submissions</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  No submissions
+                </span>
               )}
             </div>
           </div>
