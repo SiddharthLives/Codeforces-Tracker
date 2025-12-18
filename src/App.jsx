@@ -105,14 +105,7 @@ function App() {
         toggleDarkMode={toggleDarkMode}
         activePage={activePage}
         setActivePage={setActivePage}
-        onFindHandle={(closeModal) => (
-          <HandleInput
-            onSubmit={(handle) => {
-              handleSubmit(handle);
-              closeModal(false);
-            }}
-          />
-        )}
+        onSubmit={handleSubmit}
       />
 
       <div className="container mx-auto px-4 py-8">

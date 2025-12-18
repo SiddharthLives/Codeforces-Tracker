@@ -10,9 +10,15 @@ function UserHeader({ userInfo }) {
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-6 transition-colors duration-200">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold" style={{ color }}>
+          <a
+            href={`https://codeforces.com/profile/${handle}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-3xl font-bold hover:underline"
+            style={{ color }}
+          >
             {handle}
-          </h1>
+          </a>
           <p className="text-gray-600 dark:text-gray-400 mt-1">
             {getRankTitle(rank)}
           </p>
