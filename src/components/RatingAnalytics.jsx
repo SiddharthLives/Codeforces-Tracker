@@ -36,36 +36,50 @@ function RatingAnalytics({ ratingAnalytics, div2TimeStats }) {
       {div2TimeStats && (
         <>
           <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-            Div-2 Average Solve Time
+            Average Time to Solve in Div. 2 Contests
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-lg">
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
-                Problem A
-              </div>
-              <div className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                {div2TimeStats.avgA > 0
-                  ? formatTime(div2TimeStats.avgA)
-                  : "N/A"}
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {div2TimeStats.countA} contests
+          {div2TimeStats.countA === 0 && div2TimeStats.countB === 0 ? (
+            <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-lg text-center">
+              <div className="text-gray-500 dark:text-gray-400">
+                Not enough data
               </div>
             </div>
-            <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-lg">
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
-                Problem B
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-lg">
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
+                  Problem A
+                </div>
+                <div className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  {div2TimeStats.countA > 0
+                    ? formatTime(div2TimeStats.avgA)
+                    : "Not enough data"}
+                </div>
+                {div2TimeStats.countA > 0 && (
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {div2TimeStats.countA} contest
+                    {div2TimeStats.countA !== 1 ? "s" : ""}
+                  </div>
+                )}
               </div>
-              <div className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                {div2TimeStats.avgB > 0
-                  ? formatTime(div2TimeStats.avgB)
-                  : "N/A"}
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {div2TimeStats.countB} contests
+              <div className="border border-gray-200 dark:border-gray-700 p-4 rounded-lg">
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
+                  Problem B
+                </div>
+                <div className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  {div2TimeStats.countB > 0
+                    ? formatTime(div2TimeStats.avgB)
+                    : "Not enough data"}
+                </div>
+                {div2TimeStats.countB > 0 && (
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {div2TimeStats.countB} contest
+                    {div2TimeStats.countB !== 1 ? "s" : ""}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
+          )}
         </>
       )}
     </div>

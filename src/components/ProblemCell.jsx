@@ -45,9 +45,7 @@ function ProblemCell({ problem, contestId, submissionsMap }) {
       >
         <div className={`text-xs font-medium ${colorClass} w-full`}>
           <div className="font-semibold">{index}</div>
-          <div className="truncate max-w-full mt-0.5">
-            {truncateName(name)}
-          </div>
+          <div className="truncate max-w-full mt-0.5">{truncateName(name)}</div>
           <div className="text-[10px] opacity-80">({rating || "N/A"})</div>
         </div>
       </a>

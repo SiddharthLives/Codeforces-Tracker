@@ -65,36 +65,67 @@ export const processHeatmapData = (submissions) => {
 
 // Calculate average time to solve A and B in Div-2 contests
 export const calculateAvgTimeForDiv2 = (contests, submissions) => {
-  const div2Contests = contests.filter(
-    (c) => c.name.includes("Div. 2") && c.phase === "FINISHED"
-  );
+  // Filter only Div. 2 contests (exclude Div. 1, Div. 3, Educational, Global, combined)
+  const div2Contests = contests.filter((c) => {
+    if (c.phase !== "FINISHED") return false;
+    const name = c.name;
+    // Must contain "Div. 2"
+    if (!name.includes("Div. 2")) return false;
+    // Exclude combined contests (Div. 1 + Div. 2)
+    if (name.includes("Div. 1")) return false;
+    // Exclude Div. 3, Educational, Global
+    if (
+      name.includes("Div. 3") ||
+      name.includes("Educational") ||
+      name.includes("Global")
+    )
+      return false;
+    return true;
+  });
 
   const timesA = [];
   const timesB = [];
 
+  // Group submissions by contestId for efficient lookup
+  const submissionsByContest = {};
+  submissions.forEach((sub) => {
+    if (!submissionsByContest[sub.contestId]) {
+      submissionsByContest[sub.contestId] = [];
+    }
+    submissionsByContest[sub.contestId].push(sub);
+  });
+
   div2Contests.forEach((contest) => {
     const contestId = contest.id;
     const startTime = contest.startTimeSeconds;
+    const contestSubs = submissionsByContest[contestId] || [];
 
-    const contestSubs = submissions.filter(
-      (s) => s.contestId === contestId && s.verdict === "OK"
-    );
+    // Find first accepted submission for problem A
+    const acceptedA = contestSubs
+      .filter((s) => s.problem.index === "A" && s.verdict === "OK")
+      .sort((a, b) => a.creationTimeSeconds - b.creationTimeSeconds);
 
-    // Find first AC for problem A
-    const solvedA = contestSubs.find((s) => s.problem.index === "A");
-    if (solvedA) {
-      const timeA = solvedA.creationTimeSeconds - startTime;
-      if (timeA > 0) timesA.push(timeA);
+    if (acceptedA.length > 0) {
+      const timeInSeconds = acceptedA[0].creationTimeSeconds - startTime;
+      if (timeInSeconds > 0) {
+        timesA.push(timeInSeconds);
+      }
     }
 
-    // Find first AC for problem B
-    const solvedB = contestSubs.find((s) => s.problem.index === "B");
-    if (solvedB) {
-      const timeB = solvedB.creationTimeSeconds - startTime;
-      if (timeB > 0) timesB.push(timeB);
+    // Find first accepted submission for problem B
+    const acceptedB = contestSubs
+      .filter((s) => s.problem.index === "B" && s.verdict === "OK")
+      .sort((a, b) => a.creationTimeSeconds - b.creationTimeSeconds);
+
+    if (acceptedB.length > 0) {
+      const timeInSeconds = acceptedB[0].creationTimeSeconds - startTime;
+      if (timeInSeconds > 0) {
+        timesB.push(timeInSeconds);
+      }
     }
   });
 
+  // Calculate averages (already in seconds, formatTime will handle conversion)
   const avgA =
     timesA.length > 0 ? timesA.reduce((a, b) => a + b, 0) / timesA.length : 0;
   const avgB =
