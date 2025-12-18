@@ -55,11 +55,11 @@ function ContestProblems({ contests, submissions }) {
   const getStatusColor = (status) => {
     switch (status) {
       case "solved":
-        return "text-green-500 dark:text-green-400";
+        return "text-green-600 dark:text-green-400";
       case "wrong":
-        return "text-red-500 dark:text-red-400";
+        return "text-red-600 dark:text-red-400";
       default:
-        return "text-gray-500 dark:text-gray-500";
+        return "text-gray-500 dark:text-gray-400";
     }
   };
 
@@ -135,19 +135,16 @@ function ContestProblems({ contests, submissions }) {
                           href={`https://codeforces.com/contest/${contest.id}/problem/${idx}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`block hover:underline ${getStatusColor(
+                          className={`hover:underline font-medium ${getStatusColor(
                             problem.status
                           )}`}
-                          title={problem.name}
+                          title={`${problem.name} (${problem.rating})`}
                         >
-                          <div className="truncate max-w-[120px]">
-                            {problem.name}
-                          </div>
-                          <div className="text-xs">({problem.rating})</div>
+                          {idx}. {problem.name}
                         </a>
                       ) : (
                         <span className="text-gray-400 dark:text-gray-600">
-                          -
+                          N/A
                         </span>
                       )}
                     </td>
