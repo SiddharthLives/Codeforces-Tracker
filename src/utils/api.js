@@ -47,8 +47,10 @@ export const getUserSubmissions = async (handle) => {
 };
 
 export const getContestList = async () => {
-  const url = `${API_BASE}/contest.list`;
-  return await fetchWithCache(url);
+  const url = `${API_BASE}/contest.list?gym=false`;
+  const allContests = await fetchWithCache(url);
+  // Filter to only show FINISHED contests
+  return allContests.filter((contest) => contest.phase === "FINISHED");
 };
 
 export const getContestStandings = async (contestId, handle) => {
