@@ -52,8 +52,8 @@ function Heatmap({ heatmapData }) {
   }, [grid]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
-      <h2 className="text-xl font-semibold mb-4 dark:text-gray-100">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 transition-colors duration-200">
+      <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
         Submission Activity ({currentYear})
       </h2>
       <div className="overflow-x-auto">

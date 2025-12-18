@@ -6,8 +6,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function TagPieChart({ tagStats }) {
   if (!tagStats || tagStats.labels.length === 0) {
     return (
-      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
-        <h2 className="text-xl font-semibold mb-4 dark:text-gray-100">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 transition-colors duration-200">
+        <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
           Problem Tags
         </h2>
         <p className="text-gray-500 dark:text-gray-400">No data available</p>
@@ -62,8 +62,8 @@ function TagPieChart({ tagStats }) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
-      <h2 className="text-xl font-semibold mb-4 dark:text-gray-100">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 transition-colors duration-200">
+      <h2 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
         Problem Tags Distribution
       </h2>
       <div style={{ height: "400px" }}>

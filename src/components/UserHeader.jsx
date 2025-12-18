@@ -7,7 +7,7 @@ function UserHeader({ userInfo }) {
   const color = getRatingColor(rating);
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 mb-6 transition-colors duration-200">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-6 transition-colors duration-200">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold" style={{ color }}>

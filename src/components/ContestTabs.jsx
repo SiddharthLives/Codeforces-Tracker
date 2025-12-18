@@ -29,10 +29,10 @@ function ContestTabs({ contests, submissions, onSelectContest }) {
           <button
             key={type}
             onClick={() => handleTabClick(type)}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === type
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+                ? "text-gray-900 dark:text-white bg-gray-900 dark:bg-white"
+                : "text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
             {type}

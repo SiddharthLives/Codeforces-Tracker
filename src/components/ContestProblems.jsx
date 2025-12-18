@@ -60,7 +60,7 @@ function ContestProblems({ contests, submissions }) {
 
   if (contestData.length === 0) {
     return (
-      <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 transition-colors duration-200">
         <p className="text-gray-500 dark:text-gray-400">
           No contests found for this category
         </p>
@@ -69,8 +69,8 @@ function ContestProblems({ contests, submissions }) {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-200">
-      <h3 className="text-lg font-semibold mb-4 dark:text-gray-100">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 transition-colors duration-200">
+      <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
         Recent Contests
       </h3>
       <div className="space-y-4 max-h-96 overflow-y-auto">
